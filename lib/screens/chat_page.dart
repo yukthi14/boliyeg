@@ -30,11 +30,11 @@ class _ChatPageState extends State<ChatPage> {
     final now = new DateTime.now();
     return Scaffold(
       // appBar: AppBar(
-      //   title: const Text(
-      //     "Chat",
-      //     style: TextStyle(fontSize: 24),
-      //   ),
-      //   backgroundColor: Colors.black87,
+      //   // title: const Text(
+      //   //   "Chat",
+      //   //   style: TextStyle(fontSize: 24),
+      //   // ),
+      //   backgroundColor: Colors.white,
       // ),
       body: Stack(
         children: [
@@ -197,18 +197,18 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
           MessageBar(
-            messageBarColor: Colors.black,
-            sendButtonColor: Colors.white,
+            //messageBarColor: Colors.white,
+            sendButtonColor: Colors.black,
             onSend: (_) => print(_),
             actions: [
-              InkWell(
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 24,
-                ),
-                onTap: () {},
-              ),
+              // InkWell(
+              //   child: Icon(
+              //     Icons.add,
+              //     color: Colors.white,
+              //     size: 24,
+              //   ),
+              //   onTap: () {},
+              // ),
               Padding(
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.02,
@@ -216,7 +216,7 @@ class _ChatPageState extends State<ChatPage> {
                 child: InkWell(
                   child: Icon(
                     Icons.camera_alt,
-                    color: Colors.white,
+                    color: Colors.black,
                     size: 24,
                   ),
                   onTap: () async {
