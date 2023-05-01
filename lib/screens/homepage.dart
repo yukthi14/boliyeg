@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     PageTransition(
                         type: PageTransitionType.topToBottom,
-                        child: ChatPage(),duration: Duration(milliseconds: 300)));
+                        child: const ChatPage(),duration: Duration(milliseconds: 300)));
               },
               child: Container(
                 margin: EdgeInsets.only(top: displayHeight(context) * 0.3),

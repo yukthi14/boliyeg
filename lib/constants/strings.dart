@@ -8,3 +8,4 @@ const String aboutUs="About Us";
 const String setting="Setting";
 const String userName="@yukthiachar";
 bool container=false;
+bool showEmoji = false;
