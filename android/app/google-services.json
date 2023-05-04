@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652088266920",
+    "project_id": "bholiyeg",
+    "storage_bucket": "bholiyeg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652088266920:android:4932c000cbc96308d8729d",
+        "android_client_info": {
+          "package_name": "com.example.boliyeg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652088266920-ia8kv1dh5n6vsu6gabmgq6fba1k40gb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlqRilnmT_8h-pm6tFpESX3mkoRbQtVOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652088266920-ia8kv1dh5n6vsu6gabmgq6fba1k40gb4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

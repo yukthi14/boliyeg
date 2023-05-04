@@ -19,16 +19,16 @@ import "package:cached_network_image/cached_network_image.dart";
 import 'package:image_picker/image_picker.dart';
 import 'package:page_transition/page_transition.dart';
 
-class ChatPage extends StatefulWidget {
-  const ChatPage({
+class PrivatePage extends StatefulWidget {
+  const PrivatePage({
     Key? key,
   }) : super(key: key);
 
   @override
-  _ChatPageState createState() => _ChatPageState();
+  _PrivatePageState createState() => _PrivatePageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class _PrivatePageState extends State<PrivatePage> {
   // AudioPlayer audioPlayer = new AudioPlayer();
   // Duration duration = new Duration();
   // Duration position = new Duration();
@@ -36,12 +36,10 @@ class _ChatPageState extends State<ChatPage> {
   // bool isLoading = false;
   // bool isPause = false;
   final _textController = TextEditingController();
-final _chat=[{
-  'isSender':false,'type':0,'msg':'hello'
-}];
+
   @override
   Widget build(BuildContext context) {
-
+    final snap = FirebaseDatabase.instance.ref();
     final now = new DateTime.now();
     return GestureDetector(
       onTap: () {
@@ -50,66 +48,200 @@ final _chat=[{
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-         iconTheme: IconThemeData(color: Colors.black),
-         title: Row(
-           mainAxisAlignment: MainAxisAlignment.start,
-           children: [
-             Container(
-               width: displayWidth(context) * 0.1,
-               height: displayHeight(context) * 0.1,
-               decoration: BoxDecoration(
-                   border: Border.all(color: Colors.black),
-                   shape: BoxShape.circle,
-                   color: Colors.black,
-                   image: const DecorationImage(image: NetworkImage(avatar))),
-             ),
-             SizedBox(
-               width: displayWidth(context)*0.02,
-             ),
-             Container(
-               height: displayHeight(context) * 0.03,
-               width: displayWidth(context)*0.5,
-               child: Text(userName,style: TextStyle(color: Colors.black),),
-             ),
+          iconTheme: IconThemeData(color: Colors.black),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: displayWidth(context) * 0.1,
+                height: displayHeight(context) * 0.1,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    shape: BoxShape.circle,
+                    color: Colors.black,
+                    image: const DecorationImage(image: NetworkImage(avatar))),
+              ),
+              SizedBox(
+                width: displayWidth(context)*0.02,
+              ),
+              Container(
+                height: displayHeight(context) * 0.03,
+                width: displayWidth(context)*0.5,
+                child: Text(userName,style: TextStyle(color: Colors.black),),
+              ),
 
-           ],
-         ),
-         actions: [
-           IconButton(
-               onPressed: (){
-                 Navigator.push(
-                     context,
-                     PageTransition(
-                       alignment: Alignment.center,
-                         type: PageTransitionType.rotate,
-                         child: PrivatePage(),duration: Duration(milliseconds: 300)));
-               },
-               icon: Icon(Icons.lock_outline_rounded,color: Colors.black,))
-         ],
+            ],
+          ),
+          actions: [
+            IconButton(
+                onPressed: (){
+                 Navigator.pop(context);
+                },
+                icon: Icon(Icons.lock_open_rounded,color: Colors.black,))
+          ],
         ),
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-            ListView.builder(
-                itemCount: _chat.length,
-                itemBuilder: (context,index){
-                  final chat=_chat.elementAt(index);
-              return BubbleSpecialThree(
-                  text: chat['msg']as String,
-                color: const Color(0xFFE8E8EE),
-                tail: true,
-                isSender: chat['isSender']as bool,
-              );
-            }),
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  // BubbleNormalImage(
+                  //   id: 'id001',
+                  //   image: _image(),
+                  //   color: Colors.purpleAccent,
+                  //   tail: true,
+                  //   delivered: true,
+                  // ),
+                  // BubbleNormalAudio(
+                  //   color: Color(0xFFE8E8EE),
+                  //   duration: duration.inSeconds.toDouble(),
+                  //   position: position.inSeconds.toDouble(),
+                  //   isPlaying: isPlaying,
+                  //   isLoading: isLoading,
+                  //   isPause: isPause,
+                  //   onSeekChanged: _changeSeek,
+                  //   onPlayPauseButtonClick: _playAudio,
+                  //   sent: true,
+                  // ),
+                  // BubbleNormal(
+                  //   text: 'bubble normal with tail',
+                  //   isSender: false,
+                  //   color: Color(0xFF1B97F3),
+                  //   tail: true,
+                  //   textStyle: TextStyle(
+                  //     fontSize: 20,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  // BubbleNormal(
+                  //   text: 'bubble normal with tail',
+                  //   isSender: true,
+                  //   color: Color(0xFFE8E8EE),
+                  //   tail: true,
+                  //   sent: true,
+                  // ),
+                  // DateChip(
+                  //   date: new DateTime(now.year, now.month, now.day - 2),
+                  // ),
+                  // BubbleNormal(
+                  //   text: 'bubble normal without tail',
+                  //   isSender: false,
+                  //   color: Color(0xFF1B97F3),
+                  //   tail: false,
+                  //   textStyle: TextStyle(
+                  //     fontSize: 20,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  // BubbleNormal(
+                  //   text: 'bubble normal without tail',
+                  //   color: Color(0xFFE8E8EE),
+                  //   tail: false,
+                  //   sent: true,
+                  //   seen: true,
+                  //   delivered: true,
+                  // ),
+                  // BubbleSpecialOne(
+                  //   text: 'bubble special one with tail',
+                  //   isSender: false,
+                  //   color: Color(0xFF1B97F3),
+                  //   textStyle: TextStyle(
+                  //     fontSize: 20,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  // DateChip(
+                  //   date: new DateTime(now.year, now.month, now.day - 1),
+                  // ),
+                  // BubbleSpecialOne(
+                  //   text: 'bubble special one with tail',
+                  //   color: Color(0xFFE8E8EE),
+                  //   seen: true,
+                  // ),
+                  // BubbleSpecialOne(
+                  //   text: 'bubble special one without tail',
+                  //   isSender: false,
+                  //   tail: false,
+                  //   color: Color(0xFF1B97F3),
+                  //   textStyle: TextStyle(
+                  //     fontSize: 20,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  // BubbleSpecialOne(
+                  //   text: 'bubble special one without tail',
+                  //   tail: false,
+                  //   color: Color(0xFFE8E8EE),
+                  //   sent: true,
+                  // ),
+                  // BubbleSpecialTwo(
+                  //   text: 'bubble special tow with tail',
+                  //   isSender: false,
+                  //   color: Color(0xFF1B97F3),
+                  //   textStyle: TextStyle(
+                  //     fontSize: 20,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  // DateChip(
+                  //   date: now,
+                  // ),
+                  // BubbleSpecialTwo(
+                  //   text: 'bubble special tow with tail',
+                  //   isSender: true,
+                  //   color: Color(0xFFE8E8EE),
+                  //   sent: true,
+                  // ),
+                  // BubbleSpecialTwo(
+                  //   text: 'bubble special tow without tail',
+                  //   isSender: false,
+                  //   tail: false,
+                  //   color: Color(0xFF1B97F3),
+                  //   textStyle: TextStyle(
+                  //     fontSize: 20,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  // BubbleSpecialTwo(
+                  //   text: 'bubble special tow without tail',
+                  //   tail: false,
+                  //   color: Color(0xFFE8E8EE),
+                  //   delivered: true,
+                  // ),
+                  // BubbleSpecialThree(
+                  //   text: 'bubble special three without tail',
+                  //   color: Color(0xFF1B97F3),
+                  //   tail: false,
+                  //   textStyle: TextStyle(color: Colors.white, fontSize: 16),
+                  // ),
+                  BubbleSpecialThree(
+                    text: 'bubble special three with tail',
+                    color: Color(0xFF1B97F3),
+                    tail: true,
+                    textStyle:
+                    TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  // BubbleSpecialThree(
+                  //   text: "bubble special three without tail",
+                  //   color: Color(0xFFE8E8EE),
+                  //   tail: false,
+                  //   isSender: false,
+                  // ),
+                  BubbleSpecialThree(
+                    text: "bubble special three with tail",
+                    color: Color(0xFFE8E8EE),
+                    tail: true,
+                    isSender: false,
+                  ),
+                  SizedBox(
+                    height: 100,
+                  )
+                ],
+              ),
+            ),
             MessageBar(
-              onSend: (_) {
-                _chat.add({
-                  'isSender':true,'type':0,'msg':_
-                });
-                setState(() {
-
-                });
-              },
+              onSend: (_) => print(_),
               actions: [
                 // InkWell(
                 //   child: Icon(

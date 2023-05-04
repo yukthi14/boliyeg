@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _globalKey,
       drawer: Drawer(
         width: displayWidth(context) * 0.5,
@@ -70,6 +71,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               title: const Text(aboutUs),
+              leading: const Icon(Icons.arrow_outward),
               onTap: () async {},
             ),
           ],
